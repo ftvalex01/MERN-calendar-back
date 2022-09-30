@@ -1,18 +1,23 @@
-const express = require("express")
-
+const express = require("express");
+require("dotenv").config();
 
 const app = express()
-const port = 3001
-
-//Routes
-
-app.get("/",(req,res)=>{
-    console.log("bienvenido a la ruta home")
-})
+app.use(express.json())
 
 
 
+//Rutas
+app.use('/api/auth',require('./routes/auth'))
 
-app.listen(port,()=>{
-    console.log(`servidor corriendo en puerto ${port}`)
+//lectura del body
+
+//Directorio publico
+
+app.use(express.static("public"))
+
+
+
+
+app.listen(process.env.PORT,()=>{
+    console.log(`servidor corriendo en puerto ${process.env.PORT}`)
 })
